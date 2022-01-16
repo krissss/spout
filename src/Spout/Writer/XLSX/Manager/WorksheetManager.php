@@ -60,9 +60,6 @@ EOD;
     /** @var StringHelper String helper */
     private $stringHelper;
 
-    /** @var InternalEntityFactory Factory to create entities */
-    private $entityFactory;
-
     /**
      * WorksheetManager constructor.
      *
@@ -73,7 +70,6 @@ EOD;
      * @param SharedStringsManager $sharedStringsManager
      * @param XLSXEscaper $stringsEscaper
      * @param StringHelper $stringHelper
-     * @param InternalEntityFactory $entityFactory
      */
     public function __construct(
         OptionsManagerInterface $optionsManager,
@@ -82,8 +78,7 @@ EOD;
         StyleMerger $styleMerger,
         SharedStringsManager $sharedStringsManager,
         XLSXEscaper $stringsEscaper,
-        StringHelper $stringHelper,
-        InternalEntityFactory $entityFactory
+        StringHelper $stringHelper
     ) {
         $this->shouldUseInlineStrings = $optionsManager->getOption(Options::SHOULD_USE_INLINE_STRINGS);
         $this->rowManager = $rowManager;
@@ -92,7 +87,6 @@ EOD;
         $this->sharedStringsManager = $sharedStringsManager;
         $this->stringsEscaper = $stringsEscaper;
         $this->stringHelper = $stringHelper;
-        $this->entityFactory = $entityFactory;
     }
 
     /**
