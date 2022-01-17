@@ -1,3 +1,8 @@
+# 关于此 fork
+
+- 合并了 [PR 738](https://github.com/box/spout/pull/738)
+- 新增支持了数据垂直样式（水平垂直居中） 
+
 # Spout
 
 [![Latest Stable Version](https://poser.pugx.org/box/spout/v/stable)](https://packagist.org/packages/box/spout)
