@@ -2,6 +2,7 @@
 
 - 合并了 [PR 738](https://github.com/box/spout/pull/738)
 - 新增支持了数据垂直样式（水平垂直居中） 
+- 发布版本号为官方版本号后加一位
 
 # Spout
 
