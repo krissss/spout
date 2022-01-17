@@ -3,6 +3,7 @@
 namespace Box\Spout\Writer\XLSX\Manager\Style;
 
 use Box\Spout\Common\Entity\Style\BorderPart;
+use Box\Spout\Common\Entity\Style\CellAlignment;
 use Box\Spout\Common\Entity\Style\Color;
 use Box\Spout\Common\Entity\Style\Style;
 use Box\Spout\Writer\XLSX\Helper\BorderHelper;
@@ -254,7 +255,13 @@ EOD;
                 $content .= ' applyAlignment="1">';
                 $content .= '<alignment';
                 if ($style->shouldApplyCellAlignment()) {
-                    $content .= \sprintf(' horizontal="%s"', $style->getCellAlignment());
+                    [$horizontal, $vertical] = CellAlignment::parseAlignment($style->getCellAlignment());
+                    if ($horizontal) {
+                        $content .= \sprintf(' horizontal="%s"', $horizontal);
+                    }
+                    if ($vertical) {
+                        $content .= \sprintf(' vertical="%s"', $vertical);
+                    }
                 }
                 if ($style->shouldWrapText()) {
                     $content .= ' wrapText="1"';
