@@ -1,6 +1,7 @@
 # 关于此 fork
 
 - 合并了 [PR 738](https://github.com/box/spout/pull/738)
+- 支持 [hyperlink](https://github.com/97WaterPolo/spout/commit/e087e2b03ed9ad76582e15ac78c1db2f1f3e4b2a)
 - 新增支持了数据垂直样式（水平垂直居中） 
 - 发布版本号为官方版本号后加一位
 
