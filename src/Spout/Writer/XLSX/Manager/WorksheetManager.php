@@ -255,20 +255,14 @@ EOD;
         $cellXML .= ' s="' . $styleId . '"';
 
         if ($cell->isString()) {
-            $matches = array();
-            if (preg_match('/=HYPERLINK\([\'"](.*)[\'"],\s*[\'"](.*)[\'"]\)/', $cell->getValue(), $matches)) {
-                // Special case to add HYPERLINK Formula
-                $url = $this->stringsEscaper->escape($matches[1]);
-                $text = $this->stringsEscaper->escape($matches[2]);
-                $formula = sprintf('HYPERLINK("%s","%s")', strtr($url, ['"' => '""']), strtr($text, ['"' => '""']));
-                $cellXML .= ' t="str"><f>' . $formula . '</f><v>' . $text . '</v></c>';
-            } else {
-                $cellXML .= $this->getCellXMLFragmentForNonEmptyString($cell->getValue());
-            }
+            $cellXML .= $this->getCellXMLFragmentForNonEmptyString($cell->getValue());
         } elseif ($cell->isBoolean()) {
             $cellXML .= ' t="b"><v>' . (int) ($cell->getValue()) . '</v></c>';
         } elseif ($cell->isNumeric()) {
             $cellXML .= '><v>' . $this->stringHelper->formatNumericValue($cell->getValue()) . '</v></c>';
+        } elseif ($cell->isFormula()) {
+            // https://github.com/openspout/openspout/pull/5/files
+            $cellXML .= '><f>' . substr($cell->getValue(), 1) . '</f></c>';
         } elseif ($cell->isError() && is_string($cell->getValueEvenIfError())) {
             // only writes the error value if it's a string
             $cellXML .= ' t="e"><v>' . $cell->getValueEvenIfError() . '</v></c>';
