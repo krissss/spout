@@ -263,7 +263,7 @@ EOD;
             $cellXML .= '><v>' . $this->stringHelper->formatNumericValue($cell->getValue()) . '</v></c>';
         } elseif ($cell->isFormula()) {
             // https://github.com/openspout/openspout/pull/5/files
-            $cellXML .= '><f>' . substr($cell->getValue(), 1) . '</f></c>';
+            $cellXML .= '><f>' . htmlspecialchars(substr($cell->getValue(), 1)) . '</f></c>';
         } elseif ($cell->isDate()) {
             // https://github.com/openspout/openspout/pull/13/files
             $value = $cell->getValue();
